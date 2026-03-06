@@ -1,0 +1,971 @@
+[
+  {
+    "name": "Create Cart",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/cart",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
+      "offerCode": null,
+      "cart": {
+        "token": "{{cartToken}}",
+        "note": "",
+        "attributes": {},
+        "original_total_price": 1000,
+        "total_price": 1000,
+        "total_discount": 0,
+        "total_weight": 0,
+        "item_count": 1,
+        "items": [
+          {
+            "id": 45949388292285,
+            "properties": {},
+            "quantity": 1,
+            "variant_id": 45949388292285,
+            "key": "45949388292285:595503de411c4ff486efaad09ef6b843",
+            "title": "tshirt",
+            "price": 1000,
+            "original_price": 1000,
+            "presentment_price": 10,
+            "discounted_price": 1000,
+            "line_price": 1000,
+            "original_line_price": 1000,
+            "total_discount": 0,
+            "discounts": [],
+            "sku": null,
+            "grams": 0,
+            "vendor": "utkarsh-prod-store",
+            "taxable": true,
+            "product_id": 8148300759229,
+            "product_has_only_default_variant": true,
+            "gift_card": false,
+            "final_price": 1000,
+            "final_line_price": 1000,
+            "url": "/products/tshirt?variant=45949388292285",
+            "featured_image": {
+              "aspect_ratio": null,
+              "alt": null,
+              "height": null,
+              "url": null,
+              "width": null
+            },
+            "image": null,
+            "handle": "tshirt",
+            "requires_shipping": true,
+            "product_type": "",
+            "product_title": "tshirt",
+            "product_description": "",
+            "variant_title": null,
+            "variant_options": ["Default Title"],
+            "options_with_values": [
+              {
+                "name": "Title",
+                "value": "Default Title"
+              }
+            ],
+            "line_level_discount_allocations": [],
+            "line_level_total_discount": 0,
+            "quantity_rule": {
+              "min": 1,
+              "max": null,
+              "increment": 1
+            },
+            "has_components": false
+          }
+        ],
+        "requires_shipping": true,
+        "currency": "INR",
+        "items_subtotal_price": 1000,
+        "cart_level_discount_applications": [],
+        "discount_codes": []
+      },
+      "order": null,
+      "customerId": null,
+      "journey": null,
+      "merchantParams": null,
+      "refCartId": null,
+      "subscriptionPlanId": null,
+      "platformData": {
+        "customerId": null
+      },
+      "feOffersApplied": null,
+      "returnUrl": null
+    },
+    "requiresInput": [
+      { "field": "cartToken", "prompt": "Enter Shopify cart token (e.g., hWN9UiOHxamp6Ykr3BHFDl2a?key=6ecd792a9afb384cab67c3c6026c5ff8)" }
+    ],
+    "expectedStatus": 200,
+    "extract": [
+      { "field": "cartId", "path": "cartId" },
+      { "field": "checkoutUrl", "path": "checkoutUrl" }
+    ]
+  },
+  {
+    "name": "Get Cart",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/cart/{{cartId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "cart": {
+        "id": "{{cartId}}",
+        "type": "NORMAL"
+      }
+    }
+  },
+  {
+    "name": "Start Session (Send OTP)",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/session/start",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "requiresInput": [
+      { "field": "phoneNumber", "prompt": "Enter phone number: " }
+    ],
+    "body": {
+      "phoneNumber": "{{phoneNumber}}",
+      "email": "",
+      "authVerificationType": "otp",
+      "device": {
+        "id": "ebyC01X_K1fOSBMwwXHUg",
+        "details": {
+          "screenSize": "600 X 962",
+          "storageAccess": true
+        },
+        "platformVersion": "145.0.0.0",
+        "platform": "Chrome",
+        "type": "Desktop",
+        "osDetails": "Mac OS X 10.15.7",
+        "deviceSubType": "Mac"
+      },
+      "countryCode": "+91",
+      "source": null,
+      "hashCode": null,
+      "merchantParams": null,
+      "feOffersApplied": null,
+      "disableOTP": false,
+      "requestTimestamp": "2026-03-05T10:36:03.554Z"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "phoneNumber": "{{phoneNumber}}",
+      "message": "OTP sent to {{phoneNumber}}"
+    },
+    "extract": [
+      { "field": "otpSessionToken", "path": "otpSessionToken" }
+    ]
+  },
+  {
+    "name": "Verify OTP",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/otp/verify",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{otpSessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "requiresInput": [
+      { "field": "otp", "prompt": "Enter OTP received on phone: " }
+    ],
+    "body": {
+      "otp": "{{otp}}",
+      "checkoutId": "{{cartId}}",
+      "otpSessionToken": "{{otpSessionToken}}",
+      "enforcedPostalCode": null,
+      "isManagementFlow": null,
+      "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+      "ingestFromExternalSources": false,
+      "recoverCart": false,
+      "returnPlatformCredentials": false,
+      "putPlatformCustomer": false,
+      "enableNotifications": true,
+      "userMarketingConsent": true,
+      "merchantParams": null,
+      "name": null,
+      "feOffersApplied": null,
+      "emailAddress": null,
+      "addressDetail": null,
+      "returnUrl": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "verifyOTPResponseStatus": "success",
+      "message": "Start Payment Success",
+      "cart": {
+        "id": "{{cartId}}"
+      }
+    },
+    "extract": [
+      { "field": "customerId", "path": "tokenData.customerId" },
+      { "field": "sessionToken", "path": "sessionInfo[0].token" },
+      { "field": "orderId", "path": "order.id" },
+      { "field": "selectedAddressId", "path": "selectedAddressId" },
+      { "field": "customerName", "path": "tokenData.name" },
+      { "field": "customerEmail", "path": "tokenData.emailAddress" },
+      { "field": "instrumentSignature", "path": "paymentDetails.payload.signature" },
+      { "field": "instrumentOrderDetails", "path": "paymentDetails.payload.orderDetails" }
+    ]
+  },
+  {
+    "name": "Track InitiateCheckout Analytics",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/analytics/trackers/{{cartId}}?event_name=InitiateCheckout",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "currentLocation": "{{checkoutUrl}}",
+      "shippingCharge": 0,
+      "ga": true,
+      "items": [
+        {
+          "variant": 45949388292285,
+          "discount": 0,
+          "name": "tshirt",
+          "id": 8148300759229,
+          "price": 10,
+          "vendor": "utkarsh-prod-store",
+          "quantity": 1,
+          "productType": "",
+          "currency": "INR"
+        }
+      ],
+      "hashedEmailAddress": "40f615d1e6c1d6e55e1f8025e518e6d8af85b649669f5904227d4c45e4cd1c68",
+      "fbPixel": true,
+      "total_price": 1000,
+      "hashedPhoneNumber": "5021ca312e39c157c912428eb1d7b9f791269fc4326c90994eaef284b75401cc",
+      "currency": "INR",
+      "item_count": 1
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Track AddPaymentInfo Analytics",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/analytics/trackers/{{cartId}}?event_name=AddPaymentInfo",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "currentLocation": "{{checkoutUrl}}",
+      "shippingCharge": 0,
+      "ga": true,
+      "items": [
+        {
+          "variant": 45949388292285,
+          "discount": 0,
+          "name": "tshirt",
+          "id": 8148300759229,
+          "price": 10,
+          "vendor": "utkarsh-prod-store",
+          "quantity": 1,
+          "productType": "",
+          "currency": "INR"
+        }
+      ],
+      "hashedEmailAddress": "40f615d1e6c1d6e55e1f8025e518e6d8af85b649669f5904227d4c45e4cd1c68",
+      "fbPixel": true,
+      "total_price": 1180,
+      "hashedPhoneNumber": "5021ca312e39c157c912428eb1d7b9f791269fc4326c90994eaef284b75401cc",
+      "currency": "INR",
+      "tax": 180,
+      "item_count": 1
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Start Payment",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/session/start-payment",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://fitfeast1.myshopify.com"
+    },
+    "body": {
+      "checkoutId": "{{cartId}}",
+      "enforcedPostalCode": null,
+      "recoverCart": false,
+      "merchantParams": null,
+      "shippingAddress": null,
+      "feOffersApplied": [],
+      "journey": null,
+      "returnUrl": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success"
+    }
+  },
+  {
+    "name": "Get Location by Pincode",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/location/203412",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "Success",
+      "message": "Pincode data found.",
+      "district": "BULANDSHAHR",
+      "state": "UTTAR PRADESH",
+      "country": "India"
+    }
+  },
+  {
+    "name": "Update User (Add X to name)",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/user",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "name": "{{customerName}}X",
+      "emailAddress": "{{customerEmail}}",
+      "checkoutId": "{{cartId}}",
+      "enforcedPostalCode": null,
+      "ingestFromExternalSources": null,
+      "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+      "returnPlatformCredentials": false,
+      "putPlatformCustomer": false,
+      "merchantParams": null,
+      "userMarketingConsent": true,
+      "panCardNumber": null,
+      "feOffersApplied": null,
+      "sendPaymentDetails": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "updateCustomerResponseStatus": "success",
+      "tokenData": {
+        "name": "{{customerName}}X"
+      }
+    },
+    "extract": [
+      { "field": "updatedToken", "path": "updatedToken" }
+    ]
+  },
+  {
+    "name": "Revert User (Remove X from name)",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/user",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{updatedToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "name": "{{customerName}}",
+      "emailAddress": "{{customerEmail}}",
+      "checkoutId": "{{cartId}}",
+      "enforcedPostalCode": null,
+      "ingestFromExternalSources": null,
+      "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+      "returnPlatformCredentials": false,
+      "putPlatformCustomer": false,
+      "merchantParams": null,
+      "userMarketingConsent": true,
+      "panCardNumber": null,
+      "feOffersApplied": null,
+      "sendPaymentDetails": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "updateCustomerResponseStatus": "success",
+      "tokenData": {
+        "name": "{{customerName}}"
+      }
+    }
+  },
+  {
+    "name": "Update Order (Set Shipping Address)",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/order",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "shippingAddressId": "{{selectedAddressId}}",
+      "deviceId": null,
+      "orderId": "{{orderId}}",
+      "billingAddressId": null,
+      "atomsState": {
+        "checkoutId": "{{cartId}}",
+        "sessionId": "_2vtmfRQE56HKDTKYeha4",
+        "enforcedPostalCode": null,
+        "checkoutInitiationPageHref": "https://d2cstore.in",
+        "sessionTokenStored": null,
+        "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+        "shopType": "shopify",
+        "platformCustomer": {
+          "id": "",
+          "email": ""
+        },
+        "ghostMode": false,
+        "testingMode": false,
+        "jour": null
+      },
+      "gstDetailsId": null,
+      "merchantParams": null,
+      "feOffersApplied": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "message": "Updated order Successfully",
+      "cart": {
+        "id": "{{cartId}}"
+      },
+      "order": {
+        "id": "{{orderId}}",
+        "shippingAddressId": "{{selectedAddressId}}"
+      }
+    }
+  },
+  {
+    "name": "Get Custom Payment Instruments",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/payments/instruments/custom",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "cartId": "{{cartId}}",
+      "platformCustomerId": null
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Get Saved Payment Methods(Instrument call)",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/payments/instruments?customer_id={{customerId}}&signature_payload={{instrumentOrderDetailsEncoded}}&signature={{instrumentSignatureEncoded}}&merchant_key_id=943630&offers=true&refresh=false&supported_reference_ids_feature=true&add_outage=true&add_tpv_payment_method=false&add_surcharge_logic=true",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "base-url": "https://api.juspay.in/sdk/v2/savedPaymentMethods",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "session-token": "{{sessionToken}}",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-client-id": "breeze",
+      "x-jp-merchant-id": "utkarshprodstore",
+      "x-merchantid": "utkarshprodstore"
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Get Offer List",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/offer/list",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+      "order": {
+        "amount": "7.01",
+        "currency": "INR",
+        "amount_info": "{\"base_amount\":\"7.00\",\"add_on_amounts\":[{\"name\":\"deliverycharge\",\"amount\":\"0.01\"}]}",
+        "basket": "[{\"id\":\"44182614474984\",\"quantity\":1,\"unitPrice\":7}]"
+      },
+      "merchantId": "utkarshprodstore",
+      "eulerEnv": "production",
+      "cartId": "{{cartId}}",
+      "customerEmail": "{{customerEmail}}",
+      "customerPhone": "{{phoneNumber}}"
+    },
+    "expectedStatus": 200,
+    "validation": {
+      "type": "arrayMinLength",
+      "path": "offers",
+      "minLength": 1,
+      "message": "Response must contain at least one offer"
+    }
+  },
+  {
+    "name": "Apply Offer",
+    "method": "PUT",
+    "url": "https://api.breeze.in/test/offer/{{cartId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "offerCode": "test11",
+      "action": "APPLY",
+      "sponsoredBy": "SHOP",
+      "merchantParams": null,
+      "autoApply": false,
+      "feOffersApplied": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "cart": {
+        "id": "{{cartId}}"
+      }
+    },
+    "validation": {
+      "type": "arrayMinLength",
+      "path": "cart.offers",
+      "minLength": 1,
+      "message": "Offer must be applied - cart.offers should have at least one offer"
+    }
+  },
+  {
+    "name": "Apply Offer",
+    "method": "PUT",
+    "url": "https://api.breeze.in/test/offer/{{cartId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "offerCode": "test10",
+      "action": "APPLY",
+      "sponsoredBy": "SHOP",
+      "merchantParams": null,
+      "autoApply": false,
+      "feOffersApplied": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "cart": {
+        "id": "{{cartId}}"
+      }
+    },
+    "validation": {
+      "type": "arrayMinLength",
+      "path": "cart.offers",
+      "minLength": 1,
+      "message": "Offer must be applied - cart.offers should have at least one offer"
+    }
+  },
+  {
+    "name": "Add GST Information",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/address/gst",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "gstIn": "09CWPPR2625J1ZG",
+      "companyName": "rtterwtwt",
+      "isDefault": true,
+      "customerId": "{{customerId}}",
+      "billingAddressId": "{{selectedAddressId}}",
+      "isVerified": false
+    },
+    "expectedStatus": 200,
+    "extract": [
+      { "field": "gstId", "path": "id" }
+    ]
+  },
+  {
+    "name": "Update User Address",
+    "method": "PUT",
+    "url": "https://api.breeze.in/test/user/address",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "id": "{{selectedAddressId}}",
+      "postalCode": "203412",
+      "country": "India",
+      "state": "Uttar Pradesh",
+      "district": "",
+      "city": "BULANDSHAHR",
+      "type": "",
+      "line1": "hgfds",
+      "line2": null,
+      "name": "{{customerName}}",
+      "nickname": "",
+      "latitude": null,
+      "longitude": null,
+      "phoneNumber": "{{phoneNumber}}",
+      "landmark": "",
+      "countryPhoneCode": "+91",
+      "isDefault": false,
+      "validate": true,
+      "addressValidationId": "DdLdaoyACKEysvJuARUm9",
+      "orderingForSomeoneElse": null,
+      "emailAddress": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success"
+    }
+  },
+  {
+    "name": "Payment Attempt (COD)",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/payments/attempt",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "checkoutId": "{{cartId}}",
+      "orderId": "{{orderId}}",
+      "paymentCardIssuer": null,
+      "paymentCardType": null,
+      "paymentMethod": "CASH",
+      "paymentMethodType": "CASH",
+      "txnReference": "JMTuvYVevTqBBT2Z1aTVa",
+      "createMatrixOrder": null,
+      "deviceId": "ry-UbMJ6c3--kgfo5KH3J",
+      "atomsState": {
+        "checkoutId": null,
+        "sessionId": "xSihta7Yvky2LILaeuiIQ",
+        "enforcedPostalCode": null,
+        "checkoutInitiationPageHref": "https://utkarsh-prod-store.myshopify.com",
+        "sessionTokenStored": null,
+        "shopUrl": "https://utkarsh-prod-store.myshopify.com",
+        "shopType": "shopify",
+        "platformCustomer": {
+          "id": null,
+          "email": null
+        },
+        "ghostMode": false,
+        "testingMode": false,
+        "jour": null
+      },
+      "applyPartialPayment": false,
+      "merchantParams": null,
+      "feOffersApplied": null,
+      "selectedDeliveryItemsGrouping": null,
+      "journey": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "approve": true
+    },
+    "extract": [
+      { "field": "txnReference", "path": "resumePaymentPayload.payload.txnReference" },
+      { "field": "paymentOrderId", "path": "resumePaymentPayload.payload.orderDetails", "parseJson": true, "jsonPath": "order_id" },
+      { "field": "juspaySignature", "path": "resumePaymentPayload.payload.signature" },
+      { "field": "juspayOrderDetails", "path": "resumePaymentPayload.payload.orderDetails" }
+    ]
+  },
+  {
+    "name": "Place Order (Juspay)",
+    "method": "POST",
+    "url": "https://api.juspay.in/txns",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "content-type": "application/x-www-form-urlencoded",
+      "origin": "https://sdk.breeze.in",
+      "pragma": "no-cache",
+      "sdk-app-name": "unknown_appname",
+      "sdk-client-id": "breeze",
+      "sdk-godel-build-version": "unknown_build",
+      "sdk-godel-version": "unknown_trackname",
+      "sdk-os": "WEB:unknown",
+      "sdk-user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "sdk-version-dotp": "2.0rc1_66",
+      "sdk-version-ec": "1.0.1",
+      "sdk-version-flyer": "1.0.0",
+      "sdk-version-hyperos": "2.0rc1_43",
+      "sdk-version-hyperos-config": "0.0.1",
+      "sdk-version-hyperos-tracker": "2.0.13",
+      "sdk-version-upiintent": "2.0rc1_57",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-jp-merchant-id": "utkarshprodstore",
+      "x-merchantid": "utkarshprodstore",
+      "x-session-id": "{{cartId}}"
+    },
+    "body": {
+      "signature": "{{juspaySignature}}",
+      "redirect_after_payment": "true",
+      "payment_method_type": "CASH",
+      "payment_method": "CASH",
+      "payment_channel": "WEB",
+      "order_id": "{{paymentOrderId}}",
+      "order_details": "{{juspayOrderDetails}}",
+      "metadata": {
+        "payment_channel": "WEB",
+        "microapp": "ec"
+      },
+      "merchant_key_id": "943630",
+      "merchant_id": "utkarshprodstore",
+      "format": "json",
+      "add_merchant_return_url": "true"
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Get Order Details",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/order/{{orderId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "SUCCESS",
+      "id": "{{orderId}}",
+      "cartId": "{{cartId}}",
+      "paymentMethod": "CASH"
+    },
+    "extract": [
+      { "field": "platformOrderId", "path": "platformOrderId" },
+      { "field": "trackingUrl", "path": "trackingUrl" },
+      { "field": "txnId", "path": "txnId" }
+    ]
+  },
+  {
+    "name": "Track Purchase Analytics",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/analytics/trackers/{{cartId}}?event_name=Purchase",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
+    },
+    "body": {
+      "event": "Purchase",
+      "currentLocation": "{{checkoutUrl}}",
+      "shippingCharge": 0,
+      "ga": true,
+      "items": [
+        {
+          "variant": 45949388292285,
+          "discount": 0,
+          "name": "tshirt",
+          "id": 8148300759229,
+          "price": 10,
+          "vendor": "utkarsh-prod-store",
+          "quantity": 1,
+          "productType": "",
+          "currency": "INR"
+        }
+      ],
+      "hashedEmailAddress": "40f615d1e6c1d6e55e1f8025e518e6d8af85b649669f5904227d4c45e4cd1c68",
+      "fbPixel": true,
+      "shopOrderId": "#1044",
+      "paymentMethodType": "CASH",
+      "total_price": 1180,
+      "hashedPhoneNumber": "5021ca312e39c157c912428eb1d7b9f791269fc4326c90994eaef284b75401cc",
+      "currency": "INR",
+      "tax": 180,
+      "platformIdentifierId": "{{platformOrderId}}",
+      "item_count": 1
+    },
+    "expectedStatus": 200
+  }
+]
