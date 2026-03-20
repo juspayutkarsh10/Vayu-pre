@@ -181,7 +181,42 @@ class TestContext {
     if (!obj) return obj;
     
     const str = JSON.stringify(obj);
-    const replaced = this.replacePlaceholdersForJson(str);
+    
+    // Fields that should always remain as strings even if they look numeric
+    const stringOnlyFields = ['phoneNumber', 'otp', 'phone', 'mobile', 'pincode', 'postalCode', 'gstIn'];
+    
+    // First, handle placeholders that are entire string values (could be numeric)
+    // Pattern: "key":"{{placeholder}}" - capture the key too
+    let replaced = str.replace(/"(\w+)"\s*:\s*"{{([\w.]+)}}"/g, (match, jsonKey, placeholderKey) => {
+      const value = this.get(placeholderKey);
+      if (value === undefined) return match;
+      
+      // Check if this field should remain a string
+      const shouldBeString = stringOnlyFields.some(f => 
+        jsonKey.toLowerCase().includes(f.toLowerCase()) || 
+        placeholderKey.toLowerCase().includes(f.toLowerCase())
+      );
+      
+      if (shouldBeString) {
+        // Keep as string
+        return `"${jsonKey}":${JSON.stringify(String(value))}`;
+      }
+      
+      // If the value is a number, return unquoted
+      if (typeof value === 'number') {
+        return `"${jsonKey}":${value}`;
+      }
+      // If value is a string that looks like a pure integer, return unquoted (as number)
+      if (typeof value === 'string' && /^\d+$/.test(value)) {
+        return `"${jsonKey}":${value}`; // Return without quotes - will be parsed as number
+      }
+      // For other values, properly escape for JSON
+      return `"${jsonKey}":${JSON.stringify(value)}`;
+    });
+    
+    // Then handle placeholders that are part of larger strings
+    replaced = this.replacePlaceholdersForJson(replaced);
+    
     return JSON.parse(replaced);
   }
 

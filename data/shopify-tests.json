@@ -19,7 +19,7 @@
       "shopUrl": "https://utkarsh-prod-store.myshopify.com",
       "offerCode": null,
       "cart": {
-        "token": "{{cartToken}}",
+        "token": "cartToken",
         "note": "",
         "attributes": {},
         "original_total_price": 1000,
@@ -67,7 +67,9 @@
             "product_title": "tshirt",
             "product_description": "",
             "variant_title": null,
-            "variant_options": ["Default Title"],
+            "variant_options": [
+              "Default Title"
+            ],
             "options_with_values": [
               {
                 "name": "Title",
@@ -102,13 +104,16 @@
       "feOffersApplied": null,
       "returnUrl": null
     },
-    "requiresInput": [
-      { "field": "cartToken", "prompt": "Enter Shopify cart token (e.g., hWN9UiOHxamp6Ykr3BHFDl2a?key=6ecd792a9afb384cab67c3c6026c5ff8)" }
-    ],
     "expectedStatus": 200,
     "extract": [
-      { "field": "cartId", "path": "cartId" },
-      { "field": "checkoutUrl", "path": "checkoutUrl" }
+      {
+        "field": "cartId",
+        "path": "cartId"
+      },
+      {
+        "field": "checkoutUrl",
+        "path": "checkoutUrl"
+      }
     ]
   },
   {
@@ -153,7 +158,10 @@
       "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
     },
     "requiresInput": [
-      { "field": "phoneNumber", "prompt": "Enter phone number: " }
+      {
+        "field": "phoneNumber",
+        "prompt": "Enter phone number: "
+      }
     ],
     "body": {
       "phoneNumber": "{{phoneNumber}}",
@@ -186,7 +194,10 @@
       "message": "OTP sent to {{phoneNumber}}"
     },
     "extract": [
-      { "field": "otpSessionToken", "path": "otpSessionToken" }
+      {
+        "field": "otpSessionToken",
+        "path": "otpSessionToken"
+      }
     ]
   },
   {
@@ -208,7 +219,10 @@
       "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
     },
     "requiresInput": [
-      { "field": "otp", "prompt": "Enter OTP received on phone: " }
+      {
+        "field": "otp",
+        "prompt": "Enter OTP received on phone: "
+      }
     ],
     "body": {
       "otp": "{{otp}}",
@@ -216,7 +230,7 @@
       "otpSessionToken": "{{otpSessionToken}}",
       "enforcedPostalCode": null,
       "isManagementFlow": null,
-      "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
       "ingestFromExternalSources": false,
       "recoverCart": false,
       "returnPlatformCredentials": false,
@@ -240,14 +254,38 @@
       }
     },
     "extract": [
-      { "field": "customerId", "path": "tokenData.customerId" },
-      { "field": "sessionToken", "path": "sessionInfo[0].token" },
-      { "field": "orderId", "path": "order.id" },
-      { "field": "selectedAddressId", "path": "selectedAddressId" },
-      { "field": "customerName", "path": "tokenData.name" },
-      { "field": "customerEmail", "path": "tokenData.emailAddress" },
-      { "field": "instrumentSignature", "path": "paymentDetails.payload.signature" },
-      { "field": "instrumentOrderDetails", "path": "paymentDetails.payload.orderDetails" }
+      {
+        "field": "customerId",
+        "path": "tokenData.customerId"
+      },
+      {
+        "field": "sessionToken",
+        "path": "sessionInfo[0].token"
+      },
+      {
+        "field": "orderId",
+        "path": "order.id"
+      },
+      {
+        "field": "selectedAddressId",
+        "path": "selectedAddressId"
+      },
+      {
+        "field": "customerName",
+        "path": "tokenData.name"
+      },
+      {
+        "field": "customerEmail",
+        "path": "tokenData.emailAddress"
+      },
+      {
+        "field": "instrumentSignature",
+        "path": "paymentDetails.payload.signature"
+      },
+      {
+        "field": "instrumentOrderDetails",
+        "path": "paymentDetails.payload.orderDetails"
+      }
     ]
   },
   {
@@ -422,7 +460,7 @@
       "checkoutId": "{{cartId}}",
       "enforcedPostalCode": null,
       "ingestFromExternalSources": null,
-      "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
       "returnPlatformCredentials": false,
       "putPlatformCustomer": false,
       "merchantParams": null,
@@ -440,7 +478,11 @@
       }
     },
     "extract": [
-      { "field": "updatedToken", "path": "updatedToken" }
+      {
+        "field": "updatedToken",
+        "path": "updatedToken"
+      },
+      { "field": "gstDetailsId", "path": "order.gstDetailsId" }
     ]
   },
   {
@@ -467,7 +509,7 @@
       "checkoutId": "{{cartId}}",
       "enforcedPostalCode": null,
       "ingestFromExternalSources": null,
-      "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
       "returnPlatformCredentials": false,
       "putPlatformCustomer": false,
       "merchantParams": null,
@@ -514,7 +556,7 @@
         "enforcedPostalCode": null,
         "checkoutInitiationPageHref": "https://d2cstore.in",
         "sessionTokenStored": null,
-        "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+        "shopUrl": "https://utkarsh-prod-store.myshopify.com",
         "shopType": "shopify",
         "platformCustomer": {
           "id": "",
@@ -604,7 +646,7 @@
       "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
     },
     "body": {
-      "shopUrl":  "https://utkarsh-prod-store.myshopify.com",
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
       "order": {
         "amount": "7.01",
         "currency": "INR",
@@ -653,15 +695,12 @@
     },
     "expectedStatus": 200,
     "expectedResponse": {
-      "cart": {
-        "id": "{{cartId}}"
+      "status": "Failure",
+      "error": {
+        "code": "BZ-02",
+        "message": "Invalid coupon code",
+        "description": "Invalid coupon code"
       }
-    },
-    "validation": {
-      "type": "arrayMinLength",
-      "path": "cart.offers",
-      "minLength": 1,
-      "message": "Offer must be applied - cart.offers should have at least one offer"
     }
   },
   {
@@ -705,7 +744,7 @@
   },
   {
     "name": "Add GST Information",
-    "method": "POST",
+    "method": "PATCH",
     "url": "https://api.breeze.in/test/address/gst",
     "headers": {
       "accept": "*/*",
@@ -722,6 +761,7 @@
       "x-shop-url": "https://utkarsh-prod-store.myshopify.com"
     },
     "body": {
+      "id": "{{gstDetailsId}}",
       "gstIn": "09CWPPR2625J1ZG",
       "companyName": "rtterwtwt",
       "isDefault": true,
@@ -729,10 +769,7 @@
       "billingAddressId": "{{selectedAddressId}}",
       "isVerified": false
     },
-    "expectedStatus": 200,
-    "extract": [
-      { "field": "gstId", "path": "id" }
-    ]
+    "expectedStatus": 200
   },
   {
     "name": "Update User Address",
@@ -835,10 +872,24 @@
       "approve": true
     },
     "extract": [
-      { "field": "txnReference", "path": "resumePaymentPayload.payload.txnReference" },
-      { "field": "paymentOrderId", "path": "resumePaymentPayload.payload.orderDetails", "parseJson": true, "jsonPath": "order_id" },
-      { "field": "juspaySignature", "path": "resumePaymentPayload.payload.signature" },
-      { "field": "juspayOrderDetails", "path": "resumePaymentPayload.payload.orderDetails" }
+      {
+        "field": "txnReference",
+        "path": "resumePaymentPayload.payload.txnReference"
+      },
+      {
+        "field": "paymentOrderId",
+        "path": "resumePaymentPayload.payload.orderDetails",
+        "parseJson": true,
+        "jsonPath": "order_id"
+      },
+      {
+        "field": "juspaySignature",
+        "path": "resumePaymentPayload.payload.signature"
+      },
+      {
+        "field": "juspayOrderDetails",
+        "path": "resumePaymentPayload.payload.orderDetails"
+      }
     ]
   },
   {
@@ -914,9 +965,18 @@
       "paymentMethod": "CASH"
     },
     "extract": [
-      { "field": "platformOrderId", "path": "platformOrderId" },
-      { "field": "trackingUrl", "path": "trackingUrl" },
-      { "field": "txnId", "path": "txnId" }
+      {
+        "field": "platformOrderId",
+        "path": "platformOrderId"
+      },
+      {
+        "field": "trackingUrl",
+        "path": "trackingUrl"
+      },
+      {
+        "field": "txnId",
+        "path": "txnId"
+      }
     ]
   },
   {

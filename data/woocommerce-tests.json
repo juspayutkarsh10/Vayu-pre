@@ -1,0 +1,1211 @@
+[
+  {
+    "name": "Create WooCommerce Order",
+    "method": "POST",
+    "url": "https://breeze1cco.in/wp-json/wc/v3/orders",
+    "headers": {
+      "content-type": "application/json",
+      "Authorization": "{{wooBasicAuth}}"
+    },
+    "body": {
+      "status": "checkout-draft",
+      "payment_method": "breeze_gateway",
+      "payment_method_title": "Breeze Checkout",
+      "line_items": [
+        {
+          "product_id": 568,
+          "quantity": 1
+        }
+      ],
+      "billing": {
+        "country": "IN",
+        "state": "KA"
+      },
+      "shipping": {
+        "country": "IN",
+        "state": "KA"
+      }
+    },
+    "expectedStatus": 201,
+    "extract": [
+      { "field": "orderId", "path": "id" },
+      { "field": "wooOrderTotal", "path": "total" },
+      { "field": "wooOrderKey", "path": "order_key" }
+    ]
+  },
+  {
+    "name": "Create Cart",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/cart",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "Vxr2JOfnV9crTsHnHYfY-",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "cart": {},
+      "offerCode": null,
+      "shopUrl": "https://breeze1cco.in",
+      "customerId": null,
+      "order": {
+        "id": "{{orderId}}",
+        "parent_id": 0,
+        "status": "checkout-draft",
+        "currency": "INR",
+        "version": "10.4.4",
+        "prices_include_tax": false,
+        "date_created": {
+          "date": "2026-03-18 06:23:09.000000",
+          "timezone_type": 1,
+          "timezone": "+00:00"
+        },
+        "date_modified": null,
+        "discount_total": "0.00",
+        "discount_tax": "0.00",
+        "shipping_total": "0.00",
+        "shipping_tax": "0.00",
+        "cart_tax": "0.00",
+        "total": "1899.00",
+        "total_tax": "0.00",
+        "customer_id": 0,
+        "order_key": "wc_order_dCbHbqetwn4bc",
+        "billing": {
+          "first_name": "",
+          "last_name": "",
+          "company": "",
+          "address_1": "",
+          "address_2": "",
+          "city": "",
+          "state": "KA",
+          "postcode": "",
+          "country": "IN",
+          "email": "",
+          "phone": ""
+        },
+        "shipping": {
+          "first_name": "",
+          "last_name": "",
+          "company": "",
+          "address_1": "",
+          "address_2": "",
+          "city": "",
+          "state": "KA",
+          "postcode": "",
+          "country": "IN",
+          "phone": ""
+        },
+        "payment_method": "breeze_gateway",
+        "payment_method_title": "Breeze Checkout",
+        "transaction_id": "",
+        "customer_ip_address": "65.1.52.128",
+        "customer_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+        "created_via": "breeze",
+        "customer_note": "",
+        "date_completed": null,
+        "date_paid": null,
+        "cart_hash": "a9690aaee64b39ba230f762a7bcfcf2b",
+        "order_stock_reduced": false,
+        "download_permissions_granted": false,
+        "new_order_email_sent": false,
+        "recorded_sales": false,
+        "recorded_coupon_usage_counts": false,
+        "number": "795",
+        "meta_data": [
+          {"key": "_coupons_hash", "value": "d751713988987e9331980363e24189ce"},
+          {"key": "_fees_hash", "value": "d751713988987e9331980363e24189ce"},
+          {"key": "_taxes_hash", "value": "d751713988987e9331980363e24189ce"},
+          {"key": "is_vat_exempt", "value": "no"},
+          {"key": "_billing_address_index", "value": "      KA  IN  "},
+          {"key": "_shipping_address_index", "value": "      KA  IN "},
+          {"key": "_wc_order_attribution_source_type", "value": "typein"},
+          {"key": "_wc_order_attribution_utm_source", "value": "direct"},
+          {"key": "_wc_order_attribution_device_type", "value": "Mobile"},
+          {"key": "_wc_order_attribution_session_pages", "value": "4"},
+          {"key": "_wc_order_attribution_utm_medium", "value": "none"},
+          {"key": "_wc_order_attribution_utm_origin", "value": "none: direct"}
+        ],
+        "line_items": [
+          {
+            "id": 2945,
+            "name": "Nintendo eShop Gift Card 20$ (USA) - E-mail/whatsapp delivery in a few hours",
+            "product_id": 567,
+            "variation_id": 0,
+            "quantity": 1,
+            "tax_class": "",
+            "subtotal": "1899.00",
+            "subtotal_tax": null,
+            "total": "1899.00",
+            "total_tax": null,
+            "taxes": null,
+            "meta_data": [],
+            "sku": "NINESHGI",
+            "price": "1899.00",
+            "image": {
+              "src": "https://breeze1cco.in/wp-content/uploads/2025/07/71YSvFcuK7L._SL1500_-768x1194-1-150x150.jpg"
+            },
+            "weight": "0",
+            "parent_name": null
+          }
+        ],
+        "tax_lines": [],
+        "shipping_lines": [],
+        "fee_lines": [],
+        "coupon_lines": [],
+        "set_paid": null
+      },
+      "journey": null,
+      "merchantParams": null,
+      "refCartId": null,
+      "subscriptionPlanId": null,
+      "platformData": {
+        "customerId": null
+      },
+      "feOffersApplied": null,
+      "returnUrl": null
+    },
+    "expectedStatus": 200,
+    "extract": [
+      { "field": "cartId", "path": "cartId" },
+      { "field": "checkoutUrl", "path": "checkoutUrl" }
+    ]
+  },
+  {
+    "name": "Get Cart",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/cart/{{cartId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "lCe4k0zQg1NK7zi0QDSLY",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "cart": {
+        "id": "{{cartId}}",
+        "type": "NORMAL",
+        "currency": "INR"
+      },
+      "platformCart": {
+        "status": "checkout-draft",
+        "payment_method": "breeze_gateway"
+      }
+    }
+  },
+  {
+    "name": "Start Session (Send OTP)",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/session/start",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "UKOy3cAjs7BAqIx0olYLt",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "requiresInput": [
+      { "field": "phoneNumber", "prompt": "Enter phone number: " }
+    ],
+    "body": {
+      "phoneNumber": "{{phoneNumber}}",
+      "email": "",
+      "authVerificationType": "otp",
+      "device": {
+        "id": "7dSWbqN3aS5kFbjwIl7h9",
+        "details": {
+          "screenSize": "600 X 962",
+          "storageAccess": true
+        },
+        "platformVersion": "146.0.0.0",
+        "platform": "Chrome",
+        "type": "Desktop",
+        "osDetails": "Mac OS X 10.15.7",
+        "deviceSubType": "Mac"
+      },
+      "countryCode": "+91",
+      "source": null,
+      "hashCode": null,
+      "merchantParams": null,
+      "feOffersApplied": null,
+      "disableOTP": false,
+      "requestTimestamp": "2026-03-18T06:30:36.068Z"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "phoneNumber": "{{phoneNumber}}",
+      "message": "OTP sent to {{phoneNumber}}"
+    },
+    "extract": [
+      { "field": "otpSessionToken", "path": "otpSessionToken" }
+    ]
+  },
+  {
+    "name": "Verify OTP",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/otp/verify",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{otpSessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "xMNZIQb9WDW-pxsL1g33h",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "requiresInput": [
+      { "field": "otp", "prompt": "Enter OTP received on phone: " }
+    ],
+    "body": {
+      "otp": "{{otp}}",
+      "checkoutId": "{{cartId}}",
+      "otpSessionToken": "{{otpSessionToken}}",
+      "enforcedPostalCode": null,
+      "isManagementFlow": null,
+      "shopUrl": "https://breeze1cco.in",
+      "ingestFromExternalSources": false,
+      "recoverCart": null,
+      "returnPlatformCredentials": true,
+      "putPlatformCustomer": true,
+      "enableNotifications": true,
+      "userMarketingConsent": true,
+      "merchantParams": null,
+      "name": null,
+      "feOffersApplied": null,
+      "emailAddress": null,
+      "addressDetail": null,
+      "returnUrl": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "verifyOTPResponseStatus": "success",
+      "message": "Start Payment Success",
+      "cart": {
+        "id": "{{cartId}}"
+      }
+    },
+    "extract": [
+      { "field": "customerId", "path": "tokenData.customerId" },
+      { "field": "sessionToken", "path": "sessionInfo[0].token" },
+      { "field": "breezeOrderId", "path": "order.id" },
+      { "field": "selectedAddressId", "path": "selectedAddressId" },
+      { "field": "customerName", "path": "tokenData.name" },
+      { "field": "customerEmail", "path": "tokenData.emailAddress" },
+      { "field": "instrumentSignature", "path": "paymentDetails.payload.signature" },
+      { "field": "instrumentOrderDetails", "path": "paymentDetails.payload.orderDetails" }
+    ]
+  },
+  {
+    "name": "Track InitiateCheckout Analytics",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/analytics/trackers/{{cartId}}?event_name=InitiateCheckout",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "wK_Pd5QQnFub6xZyueMaf",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Track AddPaymentInfo Analytics",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/analytics/trackers/{{cartId}}?event_name=AddPaymentInfo",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "wK_Pd5QQnFub6xZyueMaf",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Start Payment",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/session/start-payment",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "splDXzHKj7KMMEAOts6g4",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "checkoutId": "{{cartId}}",
+      "enforcedPostalCode": null,
+      "recoverCart": false,
+      "merchantParams": null,
+      "shippingAddress": null,
+      "feOffersApplied": null,
+      "journey": null,
+      "returnUrl": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success"
+    }
+  },
+  {
+    "name": "Get Location by Pincode",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/location/203412",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "BNg0u-1UWSKwNo5tKuH-F",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "Success",
+      "message": "Pincode data found.",
+      "district": "BULANDSHAHR",
+      "state": "UTTAR PRADESH",
+      "country": "India"
+    }
+  },
+  {
+    "name": "Update User (Add X to name)",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/user",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "sMI5hvP8DsZPQ0tVeN08C",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "name": "{{customerName}}X",
+      "emailAddress": "{{customerEmail}}",
+      "checkoutId": "{{cartId}}",
+      "enforcedPostalCode": null,
+      "ingestFromExternalSources": null,
+      "shopUrl": "https://breeze1cco.in",
+      "returnPlatformCredentials": false,
+      "putPlatformCustomer": false,
+      "merchantParams": null,
+      "userMarketingConsent": true,
+      "panCardNumber": null,
+      "feOffersApplied": null,
+      "sendPaymentDetails": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "updateCustomerResponseStatus": "success",
+      "tokenData": {
+        "name": "{{customerName}}X"
+      }
+    },
+    "extract": [
+      { "field": "updatedToken", "path": "updatedToken" },
+      { "field": "gstDetailsId", "path": "order.gstDetailsId" }
+    ]
+  },
+  {
+    "name": "Revert User (Remove X from name)",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/user",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{updatedToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "sMI5hvP8DsZPQ0tVeN08C",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "name": "{{customerName}}",
+      "emailAddress": "{{customerEmail}}",
+      "checkoutId": "{{cartId}}",
+      "enforcedPostalCode": null,
+      "ingestFromExternalSources": null,
+      "shopUrl": "https://breeze1cco.in",
+      "returnPlatformCredentials": false,
+      "putPlatformCustomer": false,
+      "merchantParams": null,
+      "userMarketingConsent": true,
+      "panCardNumber": null,
+      "feOffersApplied": null,
+      "sendPaymentDetails": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "updateCustomerResponseStatus": "success",
+      "tokenData": {
+        "name": "{{customerName}}"
+      }
+    }
+  },
+  {
+    "name": "Update Order (Set Shipping Address)",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/order",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "sQoTWPxBLs12Td9UPzBwF",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "shippingAddressId": "{{selectedAddressId}}",
+      "deviceId": null,
+      "orderId": "{{breezeOrderId}}",
+      "billingAddressId": null,
+      "atomsState": {
+        "checkoutId": null,
+        "sessionId": "{{sessionId}}",
+        "enforcedPostalCode": null,
+        "checkoutInitiationPageHref": "https://breeze1cco.in",
+        "sessionTokenStored": null,
+        "shopUrl": "https://breeze1cco.in",
+        "shopType": "woocommerce",
+        "platformCustomer": {
+          "id": null,
+          "email": null
+        },
+        "ghostMode": false,
+        "testingMode": false,
+        "jour": null
+      },
+      "gstDetailsId": null,
+      "merchantParams": null,
+      "feOffersApplied": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "message": "Updated order Successfully",
+      "cart": {
+        "id": "{{cartId}}"
+      },
+      "order": {
+        "id": "{{breezeOrderId}}",
+        "shippingAddressId": "{{selectedAddressId}}"
+      }
+    }
+  },
+  {
+    "name": "Get Custom Payment Instruments",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/payments/instruments/custom",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "tZzi2gGzZ71X8cYhAUm_M",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "cartId": "{{cartId}}",
+      "platformCustomerId": null
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Get Saved Payment Methods (Instrument call)",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/payments/instruments?customer_id={{customerId}}&signature_payload={{instrumentOrderDetailsEncoded}}&signature={{instrumentSignatureEncoded}}&merchant_key_id=248581&offers=true&refresh=false&supported_reference_ids_feature=true&add_outage=true&add_tpv_payment_method=false&add_surcharge_logic=true",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "base-url": "https://api.juspay.in/sdk/v2/savedPaymentMethods",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "session-token": "{{sessionToken}}",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-client-id": "breeze",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-jp-merchant-id": "d2cstore",
+      "x-merchantid": "d2cstore"
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Get Offer List",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/offer/list",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "uwJLz__9WPR0XTSgz1PBh",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "shopUrl": "https://breeze1cco.in",
+      "order": {
+        "amount": "1899",
+        "currency": "INR",
+        "amount_info": "{\"base_amount\":\"1899\",\"add_on_amounts\":[{\"name\":\"deliverycharge\",\"amount\":\"0\"},{\"name\":\"surgecharge\",\"amount\":\"0\"}]}",
+        "basket": null
+      },
+      "merchantId": "d2cstore",
+      "eulerEnv": "production",
+      "cartId": "{{cartId}}",
+      "customerEmail": "{{customerEmail}}",
+      "customerPhone": "{{phoneNumber}}",
+      "flow": []
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "Apply Offer (Invalid)",
+    "method": "PUT",
+    "url": "https://api.breeze.in/test/offer/{{cartId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "1jgCkvCkImGrIxbw_4OtW",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "offerCode": "invalid_offer_code",
+      "action": "APPLY",
+      "sponsoredBy": "SHOP",
+      "merchantParams": null,
+      "autoApply": false,
+      "feOffersApplied": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "Failure",
+      "error": {
+        "code": "BZ-02",
+        "message": "Invalid coupon code",
+        "description": "Invalid coupon code"
+      }
+    }
+  },
+  {
+    "name": "Apply Offer",
+    "method": "PUT",
+    "url": "https://api.breeze.in/test/offer/{{cartId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "1jgCkvCkImGrIxbw_4OtW",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "offerCode": "testing10",
+      "action": "APPLY",
+      "sponsoredBy": "SHOP",
+      "merchantParams": null,
+      "autoApply": false,
+      "feOffersApplied": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "cart": {
+        "id": "{{cartId}}"
+      }
+    },
+    "extract": [
+      { "field": "appliedOfferId", "path": "cart.offers[0].id" },
+      { "field": "discountAmount", "path": "cart.totalDiscount" }
+    ]
+  },
+  {
+    "name": "Add GST Information",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/address/gst",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "1ius5DpRBtZF6ttFQ3-UG",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "id": "{{gstDetailsId}}",
+      "gstIn": "09CWPPR2625J1ZG",
+      "companyName": "Test Company",
+      "isDefault": true,
+      "billingAddressId": "{{selectedAddressId}}",
+      "isVerified": false
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "customerId": "{{customerId}}"
+    }
+  },
+  {
+    "name": "Update User Address",
+    "method": "PUT",
+    "url": "https://api.breeze.in/test/user/address",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "92bhEjmfBIzLx5Ov8mzXM",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "id": null,
+      "postalCode": "203412",
+      "country": "India",
+      "state": "Uttar Pradesh",
+      "district": "",
+      "city": "BULANDSHAHR",
+      "type": "",
+      "line1": "654",
+      "line2": null,
+      "name": "{{customerName}}",
+      "nickname": "",
+      "latitude": null,
+      "longitude": null,
+      "phoneNumber": "{{phoneNumber}}",
+      "landmark": "",
+      "countryPhoneCode": "+91",
+      "isDefault": false,
+      "validate": true,
+      "addressValidationId": "V3kp2UkMZLiuKVKbqOjkV",
+      "orderingForSomeoneElse": null,
+      "emailAddress": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "message": "success"
+    },
+    "extract": [
+      { "field": "newAddressId", "path": "addresses[0].id" }
+    ]
+  },
+  {
+    "name": "Payments Attempt (COD Payment)",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/payments/attempt",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "iJ4XiiTudYFIJorbpSEhm",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "body": {
+      "checkoutId": "{{cartId}}",
+      "orderId": "{{breezeOrderId}}",
+      "paymentCardIssuer": null,
+      "paymentCardType": null,
+      "paymentMethod": "CASH",
+      "paymentMethodType": "CASH",
+      "txnReference": "1pkZAd_hh9X3_62aOvCyL",
+      "createMatrixOrder": null,
+      "deviceId": "7dSWbqN3aS5kFbjwIl7h9",
+      "atomsState": {
+        "checkoutId": null,
+        "sessionId": "{{sessionId}}",
+        "enforcedPostalCode": null,
+        "checkoutInitiationPageHref": "https://breeze1cco.in",
+        "sessionTokenStored": null,
+        "shopUrl": "https://breeze1cco.in",
+        "shopType": "woocommerce",
+        "platformCustomer": {
+          "id": null,
+          "email": null
+        },
+        "ghostMode": false,
+        "testingMode": false,
+        "jour": null
+      },
+      "applyPartialPayment": false,
+      "merchantParams": null,
+      "feOffersApplied": null,
+      "selectedDeliveryItemsGrouping": null,
+      "journey": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "approve": true,
+      "allowRetry": true,
+      "retryAction": "RestartPayment"
+    },
+    "extract": [
+      { "field": "resumePaymentSignature", "path": "resumePaymentPayload.payload.signature" },
+      { "field": "resumePaymentOrderDetails", "path": "resumePaymentPayload.payload.orderDetails" },
+      { "field": "resumePaymentTxnReference", "path": "resumePaymentPayload.payload.txnReference" },
+      { "field": "juspaySessionId", "path": "resumePaymentPayload.requestId" }
+    ]
+  },
+  {
+    "name": "Juspay Txns (Process Payment)",
+    "method": "POST",
+    "url": "https://api.juspay.in/txns",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "content-type": "application/x-www-form-urlencoded",
+      "origin": "https://sdk.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "sdk-app-name": "unknown_appname",
+      "sdk-client-id": "breeze",
+      "sdk-godel-build-version": "unknown_build",
+      "sdk-godel-version": "unknown_trackname",
+      "sdk-os": "WEB:unknown",
+      "sdk-user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "sdk-version-dotp": "2.0rc1_66",
+      "sdk-version-ec": "1.0.1",
+      "sdk-version-flyer": "1.0.0",
+      "sdk-version-hyperos": "2.0rc1_43",
+      "sdk-version-hyperos-config": "0.0.1",
+      "sdk-version-hyperos-tracker": "2.0.13",
+      "sdk-version-upiintent": "2.0rc1_57",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "cross-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-jp-merchant-id": "d2cstore",
+      "x-merchantid": "d2cstore",
+      "x-session-id": "{{juspaySessionId}}"
+    },
+    "bodyType": "form-urlencoded",
+    "body": {
+      "signature": "{{resumePaymentSignature}}",
+      "redirect_after_payment": "true",
+      "payment_method_type": "CASH",
+      "payment_method": "CASH",
+      "payment_channel": "WEB",
+      "order_id": "{{breezeOrderId}}",
+      "order_details": "{{resumePaymentOrderDetails}}",
+      "metadata": "{\"payment_channel\":\"WEB\",\"microapp\":\"ec\"}",
+      "merchant_key_id": "248581",
+      "merchant_id": "d2cstore",
+      "format": "json",
+      "add_merchant_return_url": "true"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "COD_INITIATED",
+      "resp_message": "Transaction is successful",
+      "resp_code": "TXN_SUCCESS"
+    },
+    "extract": [
+      { "field": "txnUuid", "path": "txn_uuid" },
+      { "field": "txnId", "path": "txn_id" },
+      { "field": "merchantReturnUrl", "path": "merchant_return_url" }
+    ]
+  },
+  {
+    "name": "Get Order Details",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/order/{{breezeOrderId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "BNg0u-1UWSKwNo5tKuH-F",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "id": "{{breezeOrderId}}"
+    }
+  },
+  {
+    "name": "Get Cart After Payment",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/cart/{{cartId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "LedeikQH0mfMkxWiI38j8",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "cart": {
+        "id": "{{cartId}}"
+      },
+      "platformCart": {
+        "status": "processing",
+        "payment_method": "cod"
+      }
+    }
+  },
+  {
+    "name": "Track Purchase Analytics",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/analytics/trackers/{{cartId}}?event_name=Purchase",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "authorization": "Bearer {{sessionToken}}",
+      "cache-control": "no-cache",
+      "content-type": "application/json",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "priority": "u=1, i",
+      "referer": "https://app.breeze.in/",
+      "sec-ch-ua": "\"Chromium\";v=\"146\", \"Not-A.Brand\";v=\"24\", \"Google Chrome\";v=\"146\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-site",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-checkout-id": "{{cartId}}",
+      "x-device-id": "7dSWbqN3aS5kFbjwIl7h9",
+      "x-request-id": "BNg0u-1UWSKwNo5tKuH-F",
+      "x-session-id": "{{sessionId}}",
+      "x-shop-url": "https://breeze1cco.in"
+    },
+    "expectedStatus": 200
+  }
+]
