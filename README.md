@@ -71,6 +71,8 @@ npm install
    WOO_CONSUMER_SECRET=cs_your_consumer_secret
    ```
 
+3. Add the same mobile number in the env `MOBILE_NUMBER_FOR_CONSTANT_OTP` in breeze-api-pre production tracker
+
 ### Getting WooCommerce API Keys
 
 1. Go to **WooCommerce > Settings > Advanced > REST API**
