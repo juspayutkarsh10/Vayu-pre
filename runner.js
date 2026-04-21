@@ -170,6 +170,12 @@ async function runPortalTests(portal, tests) {
             console.log(`   📱 Using phone from .env: ${ENV.PHONE_NUMBER}`);
             return false;
           }
+          // Auto-fill OTP with static value
+          if (input.field === 'otp') {
+            autoFilled[input.field] = '1234';
+            console.log(`🔑 Using static OTP: 1234`);
+            return false;
+          }
           // Note: orderId must be a REAL WooCommerce order ID with items
           return true;
         });
@@ -226,13 +232,9 @@ async function runPortalTests(portal, tests) {
             statusCode: response.status
           });
           
-          console.log(`\n❌ Incorrect OTP. Please try again (attempt ${otpRetryCount}/${maxOtpRetries}):`);
+          console.log(`\n❌ Incorrect OTP. Retrying with static OTP: 1234 (attempt ${otpRetryCount}/${maxOtpRetries})`);
           
-          const otpInput = await promptMultipleInputs([
-            { field: "otp", prompt: "Enter OTP received on phone: " }
-          ]);
-          
-          testContext.set('otp', otpInput.otp);
+          testContext.set('otp', '1234');
           body = isFormEncoded 
             ? testContext.replaceInObjectDirect(test.body || {})
             : testContext.replaceInObject(test.body || {});

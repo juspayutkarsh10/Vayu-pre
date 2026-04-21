@@ -14,7 +14,7 @@ Each test run executes the full checkout journey—from cart creation to payment
 
 - Sequential API test execution with variable extraction
 - Support for both Shopify and WooCommerce platforms
-- Interactive OTP input during test execution
+- Automated OTP flow during test execution
 - Automatic session and authentication handling
 - HTML report generation with:
   - Test pass/fail status
