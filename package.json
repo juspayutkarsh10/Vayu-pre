@@ -1,12 +1,12 @@
 {
   "name": "vayu-pre",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/runner.ts",
   "scripts": {
-    "test": "node runner.js",
-    "shopify": "node runner.js shopify",
-    "woocommerce": "node runner.js woocommerce",
-    "woo": "node runner.js woocommerce"
+    "test": "ts-node src/runner.ts",
+    "shopify": "ts-node src/runner.ts shopify",
+    "woocommerce": "ts-node src/runner.ts woocommerce",
+    "woo": "ts-node src/runner.ts woocommerce"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,10 @@
   "description": "",
   "dependencies": {
     "axios": "^1.13.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
   }
 }

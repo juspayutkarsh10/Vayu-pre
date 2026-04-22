@@ -17,29 +17,35 @@ Each test run executes the full checkout journey—from cart creation to payment
 - Automated OTP flow during test execution
 - Automatic session and authentication handling
 - HTML report generation with:
-  - Test pass/fail status
+  - Test pass/fail/flaky status
   - Request/response details
   - Copy-ready cURL commands
   - Execution timing metrics
 - Environment-based configuration
+- Strict TypeScript types throughout
 
 ## Project Structure
 
 ```
 vayu-pre/
-├── runner.js              # Main test runner
-├── package.json           # Dependencies and scripts
-├── .env                   # Environment configuration (create from .env.example)
-├── .env.example           # Template for environment variables
+├── src/
+│   ├── runner.ts              # Main test runner
+│   ├── types/
+│   │   └── index.ts           # Shared TypeScript interfaces
+│   └── utils/
+│       ├── input.ts           # User input handling (OTP prompts)
+│       ├── reporter.ts        # HTML report generation
+│       ├── store.ts           # Test context and variable storage
+│       └── validator.ts       # Response validation utilities
 ├── data/
-│   ├── shopify-tests.json      # Shopify test definitions
-│   └── woocommerce-tests.json  # WooCommerce test definitions
-├── utils/
-│   ├── input.js           # User input handling (OTP prompts)
-│   ├── reporter.js        # HTML report generation
-│   ├── store.js           # Test context and variable storage
-│   └── validator.js       # Response validation utilities
-└── reports/               # Generated test reports (auto-created)
+│   ├── shopify-tests.json     # Shopify test definitions
+│   └── woocommerce-tests.json # WooCommerce test definitions
+├── reports/                   # Generated HTML reports (auto-created)
+├── tsconfig.json              # TypeScript configuration
+├── package.json
+├── .env                       # Environment config (create from .env.example)
+├── .env.example               # Template for environment variables
+└── .gitignore
 ```
 
 ## Installation
@@ -61,7 +67,6 @@ npm install
    ```
 
 2. Configure your `.env` file:
-
    ```env
    # Phone number for OTP verification (10 digits, no country code)
    PHONE_NUMBER=9876543210
@@ -71,7 +76,7 @@ npm install
    WOO_CONSUMER_SECRET=cs_your_consumer_secret
    ```
 
-3. Add the same mobile number in the env `MOBILE_NUMBER_FOR_CONSTANT_OTP` in breeze-api-pre production tracker
+3. Add the same mobile number in the env `MOBILE_NUMBER_FOR_CONSTANT_OTP` in breeze-api-pre production tracker.
 
 ### Getting WooCommerce API Keys
 
@@ -85,8 +90,6 @@ npm install
 ### Run All Tests
 ```bash
 npm test
-# or
-node runner.js
 ```
 
 ### Run Platform-Specific Tests
@@ -94,8 +97,6 @@ node runner.js
 **Shopify only:**
 ```bash
 npm run shopify
-# or
-node runner.js shopify
 ```
 
 **WooCommerce only:**
@@ -103,8 +104,6 @@ node runner.js shopify
 npm run woocommerce
 # or
 npm run woo
-# or
-node runner.js woocommerce
 ```
 
 ## Test Flow
@@ -125,7 +124,7 @@ node runner.js woocommerce
 │  4. Send OTP                                                     │
 │     └─▶ Extract: otpSessionToken                                 │
 │                                                                  │
-│  5. Verify OTP (requires manual input)                           │
+│  5. Verify OTP (auto-filled via .env)                            │
 │     └─▶ Extract: sessionToken, customerId                        │
 │                                                                  │
 │  6. Start Payment                                                │
@@ -151,7 +150,7 @@ node runner.js woocommerce
 │  3. Send OTP                                                     │
 │     └─▶ Extract: otpSessionToken                                 │
 │                                                                  │
-│  4. Verify OTP (requires manual input)                           │
+│  4. Verify OTP (auto-filled via .env)                            │
 │     └─▶ Extract: sessionToken, customerId                        │
 │                                                                  │
 │  5. Start Payment                                                │
@@ -193,59 +192,25 @@ Tests are defined in JSON files under `data/`. Each test object supports:
 
 ### Variable Placeholders
 
-Use `{{variableName}}` syntax to reference extracted values:
-- `{{cartId}}` - Cart identifier
-- `{{sessionToken}}` - Auth token
-- `{{customerId}}` - Customer identifier
-- `{{orderId}}` - Platform order ID
+Use `{{variableName}}` syntax to reference extracted values across tests:
+- `{{cartId}}` — Cart identifier
+- `{{sessionToken}}` — Auth token
+- `{{customerId}}` — Customer identifier
+- `{{orderId}}` — Platform order ID
 
 ## Reports
 
-After test execution, an HTML report is generated in the `reports/` directory:
+After test execution, an HTML report is generated in `reports/test-report.html` and automatically opened in the browser.
 
-```
-reports/
-└── test-report.html
-```
-
-> **Note**: The report file is overwritten on each test run. Save/rename the file if you need to preserve previous results.
+> **Note**: The report is overwritten on each run. Rename or save it elsewhere if you need to preserve previous results.
 
 ### Report Features
-- **Summary**: Total tests, pass/fail counts, duration
-- **Test Details**: Expandable sections for each test
-- **Request Info**: Headers, body, cURL command
-- **Response Data**: Status code, response body
-- **Timestamps**: Execution time per test
-
-## Console Output
-
-```
-============================================================
-🛒 Running WooCommerce Tests (25 tests)
-============================================================
-
-🔐 Generated sessionId: aBcDeFgHiJkLmNoPqRsTu
-🔑 Using WooCommerce API keys from .env
-
-✅ PASS: Create WooCommerce Order
-📤 POST https://breeze1cco.in/wp-json/wc/v3/orders
-📥 Status: 201
-
-✅ PASS: Create Cart
-📤 POST https://api.breeze.in/test/cart
-📥 Status: 200
-
-📝 Test "Verify OTP" requires user input:
-   Enter OTP received on phone: ******
-
-...
-
-============================================================
-📊 WooCommerce Results: 24/25 passed (96.0%)
-⏱️  Duration: 45.2s
-📄 Report: reports/test-report.html
-============================================================
-```
+- **Overall summary**: portals tested, total/passed/failed, duration
+- **Per-portal tabs**: switch between Shopify and WooCommerce results
+- **Filterable test list**: filter by pass / fail / flaky
+- **Expandable test rows**: headers, body, cURL command, response
+- **Flaky test tracking**: OTP retry attempts shown inline
+- **Stored values panel**: all extracted context variables
 
 ## Troubleshooting
 
@@ -260,13 +225,13 @@ reports/
 - Ensure you're entering the OTP within the timeout window
 
 **3. Test Context Variables Missing**
-- Previous test in the chain may have failed
+- A previous test in the chain may have failed
 - Check the HTML report for the failing test's response
 
 ## Contributing
 
 1. Add new tests to the appropriate JSON file in `data/`
-2. Use placeholders for dynamic values
+2. Use `{{placeholder}}` syntax for dynamic values
 3. Define `extract` rules for values needed by subsequent tests
 4. Test locally before committing
 
