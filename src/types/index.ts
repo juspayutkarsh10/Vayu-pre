@@ -42,6 +42,8 @@ export interface TestStep {
   requiresInput?: RequiresInput[];
   validation?: ValidationConfig;
   retryOnOtpError?: boolean;
+  noFollowRedirects?: boolean; // when true, axios will NOT follow 3xx — use to capture JSON before redirect
+  delayBefore?: number; // milliseconds to wait before executing this step
 }
 
 // A single retry attempt record
@@ -95,7 +97,8 @@ export interface OverallSummary {
 
 // Env variable map loaded from .env
 export interface EnvConfig {
-  PHONE_NUMBER?: string;
+  SHOPIFY_PHONE_NUMBER?: string;
+  WOO_PHONE_NUMBER?: string;
   WOO_COOKIE?: string;
   WOO_NONCE?: string;
   WOO_CONSUMER_KEY?: string;
