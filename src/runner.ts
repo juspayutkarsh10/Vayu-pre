@@ -164,6 +164,11 @@ async function runPortalTests(
     };
 
     try {
+      if (test.delayBefore && test.delayBefore > 0) {
+        console.log(`\n⏳ Waiting ${test.delayBefore}ms before "${test.name}"...`);
+        await new Promise((resolve) => setTimeout(resolve, test.delayBefore));
+      }
+
       const contentType =
         (test.headers?.["content-type"]) ||
         (test.headers?.["Content-Type"]) ||
@@ -183,9 +188,11 @@ async function runPortalTests(
 
         const autoFilled: Record<string, string> = {};
         const remainingInputs = test.requiresInput.filter((input) => {
-          if (input.field === "phoneNumber" && ENV.PHONE_NUMBER) {
-            autoFilled[input.field] = ENV.PHONE_NUMBER;
-            console.log(`   📱 Using phone from .env: ${ENV.PHONE_NUMBER}`);
+          const phoneEnvKey = portal.id === "shopify" ? "SHOPIFY_PHONE_NUMBER" : "WOO_PHONE_NUMBER";
+          const phoneNumber = ENV[phoneEnvKey];
+          if (input.field === "phoneNumber" && phoneNumber) {
+            autoFilled[input.field] = phoneNumber;
+            console.log(`   📱 Using phone from .env (${phoneEnvKey}): ${phoneNumber}`);
             return false;
           }
           if (input.field === "otp") {
@@ -236,6 +243,7 @@ async function runPortalTests(
           url,
           headers,
           data: requestData,
+          ...(test.noFollowRedirects ? { maxRedirects: 0, validateStatus: (s) => s < 400 } : {}),
         });
 
         if (

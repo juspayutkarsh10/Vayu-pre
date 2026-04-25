@@ -482,7 +482,10 @@
         "field": "updatedToken",
         "path": "updatedToken"
       },
-      { "field": "gstDetailsId", "path": "order.gstDetailsId" }
+      {
+        "field": "gstDetailsId",
+        "path": "order.gstDetailsId"
+      }
     ]
   },
   {
@@ -1024,6 +1027,972 @@
       "currency": "INR",
       "tax": 180,
       "platformIdentifierId": "{{platformOrderId}}",
+      "item_count": 1
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Create Cart",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/cart",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "content-type": "application/json"
+    },
+    "body": {
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
+      "offerCode": null,
+      "cart": {
+        "token": "cartToken",
+        "note": "",
+        "attributes": {},
+        "original_total_price": 1000,
+        "total_price": 1000,
+        "total_discount": 0,
+        "total_weight": 0,
+        "item_count": 1,
+        "items": [
+          {
+            "id": 45949388292285,
+            "properties": {},
+            "quantity": 1,
+            "variant_id": 45949388292285,
+            "key": "45949388292285:595503de411c4ff486efaad09ef6b843",
+            "title": "tshirt",
+            "price": 1000,
+            "original_price": 1000,
+            "presentment_price": 10,
+            "discounted_price": 1000,
+            "line_price": 1000,
+            "original_line_price": 1000,
+            "total_discount": 0,
+            "discounts": [],
+            "sku": null,
+            "grams": 0,
+            "vendor": "utkarsh-prod-store",
+            "taxable": true,
+            "product_id": 8148300759229,
+            "product_has_only_default_variant": true,
+            "gift_card": false,
+            "final_price": 1000,
+            "final_line_price": 1000,
+            "url": "/products/tshirt?variant=45949388292285",
+            "featured_image": {
+              "aspect_ratio": null,
+              "alt": null,
+              "height": null,
+              "url": null,
+              "width": null
+            },
+            "image": null,
+            "handle": "tshirt",
+            "requires_shipping": true,
+            "product_type": "",
+            "product_title": "tshirt",
+            "product_description": "",
+            "variant_title": null,
+            "variant_options": [
+              "Default Title"
+            ],
+            "options_with_values": [
+              {
+                "name": "Title",
+                "value": "Default Title"
+              }
+            ],
+            "line_level_discount_allocations": [],
+            "line_level_total_discount": 0,
+            "quantity_rule": {
+              "min": 1,
+              "max": null,
+              "increment": 1
+            },
+            "has_components": false
+          }
+        ],
+        "requires_shipping": true,
+        "currency": "INR",
+        "items_subtotal_price": 1000,
+        "cart_level_discount_applications": [],
+        "discount_codes": []
+      },
+      "order": null,
+      "customerId": null,
+      "journey": null,
+      "merchantParams": null,
+      "refCartId": null,
+      "subscriptionPlanId": null,
+      "platformData": {
+        "customerId": null
+      },
+      "feOffersApplied": null,
+      "returnUrl": null
+    },
+    "expectedStatus": 200,
+    "extract": [
+      {
+        "field": "nb_cartId",
+        "path": "cartId"
+      },
+      {
+        "field": "nb_checkoutUrl",
+        "path": "checkoutUrl"
+      }
+    ]
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Get Cart",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/cart/{{nb_cartId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "x-checkout-id": "{{nb_cartId}}"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "cart": {
+        "id": "{{nb_cartId}}",
+        "type": "NORMAL"
+      }
+    }
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Start Session (Send OTP)",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/session/start",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "content-type": "application/json",
+      "x-checkout-id": "{{nb_cartId}}"
+    },
+    "requiresInput": [
+      {
+        "field": "phoneNumber",
+        "prompt": "Enter phone number: "
+      }
+    ],
+    "body": {
+      "phoneNumber": "{{phoneNumber}}",
+      "email": "",
+      "authVerificationType": "otp",
+      "device": {
+        "id": "ebyC01X_K1fOSBMwwXHUg",
+        "details": {
+          "screenSize": "600 X 962",
+          "storageAccess": true
+        },
+        "platformVersion": "147.0.0.0",
+        "platform": "Chrome",
+        "type": "Desktop",
+        "osDetails": "Mac OS X 10.15.7",
+        "deviceSubType": "Mac"
+      },
+      "countryCode": "+91",
+      "source": null,
+      "hashCode": null,
+      "merchantParams": null,
+      "feOffersApplied": null,
+      "disableOTP": false,
+      "requestTimestamp": "2026-03-05T10:36:03.554Z"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "phoneNumber": "{{phoneNumber}}",
+      "message": "OTP sent to {{phoneNumber}}"
+    },
+    "extract": [
+      {
+        "field": "nb_otpSessionToken",
+        "path": "otpSessionToken"
+      }
+    ]
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Verify OTP",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/otp/verify",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_otpSessionToken}}",
+      "content-type": "application/json",
+      "x-checkout-id": "{{nb_cartId}}"
+    },
+    "requiresInput": [
+      {
+        "field": "otp",
+        "prompt": "Enter OTP received on phone: "
+      }
+    ],
+    "body": {
+      "otp": "{{otp}}",
+      "checkoutId": "{{nb_cartId}}",
+      "otpSessionToken": "{{nb_otpSessionToken}}",
+      "enforcedPostalCode": null,
+      "isManagementFlow": null,
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
+      "ingestFromExternalSources": false,
+      "recoverCart": false,
+      "returnPlatformCredentials": false,
+      "putPlatformCustomer": false,
+      "enableNotifications": true,
+      "userMarketingConsent": true,
+      "merchantParams": null,
+      "name": null,
+      "feOffersApplied": null,
+      "emailAddress": null,
+      "addressDetail": null,
+      "returnUrl": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "verifyOTPResponseStatus": "success",
+      "message": "Start Payment Success",
+      "cart": {
+        "id": "{{nb_cartId}}"
+      }
+    },
+    "extract": [
+      {
+        "field": "nb_customerId",
+        "path": "tokenData.customerId"
+      },
+      {
+        "field": "nb_sessionToken",
+        "path": "sessionInfo[0].token"
+      },
+      {
+        "field": "nb_orderId",
+        "path": "order.id"
+      },
+      {
+        "field": "nb_selectedAddressId",
+        "path": "selectedAddressId"
+      },
+      {
+        "field": "nb_customerName",
+        "path": "tokenData.name"
+      },
+      {
+        "field": "nb_customerEmail",
+        "path": "tokenData.emailAddress"
+      },
+      {
+        "field": "instrumentSignature",
+        "path": "paymentDetails.payload.signature"
+      },
+      {
+        "field": "instrumentOrderDetails",
+        "path": "paymentDetails.payload.orderDetails"
+      }
+    ]
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Track InitiateCheckout Analytics",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/analytics/trackers/{{nb_cartId}}?event_name=InitiateCheckout",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}"
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Track AddPaymentInfo Analytics",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/analytics/trackers/{{nb_cartId}}?event_name=AddPaymentInfo",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}"
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Start Payment",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/session/start-payment",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "checkoutId": "{{nb_cartId}}",
+      "enforcedPostalCode": null,
+      "recoverCart": false,
+      "merchantParams": null,
+      "shippingAddress": null,
+      "feOffersApplied": [],
+      "journey": null,
+      "returnUrl": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success"
+    }
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Get Location by Pincode",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/location/203412",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}"
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "Success",
+      "message": "Pincode data found.",
+      "district": "BULANDSHAHR",
+      "state": "UTTAR PRADESH",
+      "country": "India"
+    }
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Update User (Add X to name)",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/user",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "name": "{{nb_customerName}}X",
+      "emailAddress": "{{nb_customerEmail}}",
+      "checkoutId": "{{nb_cartId}}",
+      "enforcedPostalCode": null,
+      "ingestFromExternalSources": null,
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
+      "returnPlatformCredentials": false,
+      "putPlatformCustomer": false,
+      "merchantParams": null,
+      "userMarketingConsent": true,
+      "panCardNumber": null,
+      "feOffersApplied": null,
+      "sendPaymentDetails": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "updateCustomerResponseStatus": "success",
+      "tokenData": {
+        "name": "{{nb_customerName}}X"
+      }
+    },
+    "extract": [
+      {
+        "field": "nb_updatedToken",
+        "path": "updatedToken"
+      },
+      {
+        "field": "nb_gstDetailsId",
+        "path": "order.gstDetailsId"
+      }
+    ]
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Revert User (Remove X from name)",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/user",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_updatedToken}}",
+      "content-type": "application/json",
+      "x-checkout-id": "{{nb_cartId}}"
+    },
+    "body": {
+      "name": "{{nb_customerName}}",
+      "emailAddress": "{{nb_customerEmail}}",
+      "checkoutId": "{{nb_cartId}}",
+      "enforcedPostalCode": null,
+      "ingestFromExternalSources": null,
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
+      "returnPlatformCredentials": false,
+      "putPlatformCustomer": false,
+      "merchantParams": null,
+      "userMarketingConsent": true,
+      "panCardNumber": null,
+      "feOffersApplied": null,
+      "sendPaymentDetails": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "updateCustomerResponseStatus": "success",
+      "tokenData": {
+        "name": "{{nb_customerName}}"
+      }
+    }
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Update Order (Set Shipping Address)",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/order",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "shippingAddressId": "{{nb_selectedAddressId}}",
+      "deviceId": null,
+      "orderId": "{{nb_orderId}}",
+      "billingAddressId": null,
+      "atomsState": {
+        "checkoutId": "{{nb_cartId}}",
+        "sessionId": "_2vtmfRQE56HKDTKYeha4",
+        "enforcedPostalCode": null,
+        "checkoutInitiationPageHref": "https://utkarsh-prod-store.myshopify.com",
+        "sessionTokenStored": null,
+        "shopUrl": "https://utkarsh-prod-store.myshopify.com",
+        "shopType": "shopify",
+        "platformCustomer": {
+          "id": "",
+          "email": ""
+        },
+        "ghostMode": false,
+        "testingMode": false,
+        "jour": null
+      },
+      "gstDetailsId": null,
+      "merchantParams": null,
+      "feOffersApplied": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success",
+      "message": "Updated order Successfully",
+      "cart": {
+        "id": "{{nb_cartId}}"
+      },
+      "order": {
+        "id": "{{nb_orderId}}",
+        "shippingAddressId": "{{nb_selectedAddressId}}"
+      }
+    }
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Get Custom Payment Instruments",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/payments/instruments/custom",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "cartId": "{{nb_cartId}}",
+      "platformCustomerId": null
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Get Saved Payment Methods (Instrument call)",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/payments/instruments?customer_id={{nb_customerId}}&signature_payload={{instrumentOrderDetailsEncoded}}&signature={{instrumentSignatureEncoded}}&merchant_key_id=943630&offers=true&refresh=false&supported_reference_ids_feature=true&add_outage=true&add_tpv_payment_method=false&add_surcharge_logic=true",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "session-token": "{{nb_sessionToken}}",
+      "x-client-id": "breeze",
+      "x-jp-merchant-id": "utkarshprodstore",
+      "x-merchantid": "utkarshprodstore"
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Get Offer List",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/offer/list",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "shopUrl": "https://utkarsh-prod-store.myshopify.com",
+      "order": {
+        "amount": "1180",
+        "currency": "INR",
+        "amount_info": "{\"base_amount\":\"1180\",\"add_on_amounts\":[{\"name\":\"deliverycharge\",\"amount\":\"0\"},{\"name\":\"surgecharge\",\"amount\":\"0\"}]}",
+        "basket": null
+      },
+      "merchantId": "utkarshprodstore",
+      "eulerEnv": "production",
+      "cartId": "{{nb_cartId}}",
+      "customerEmail": "{{nb_customerEmail}}",
+      "customerPhone": "{{phoneNumber}}",
+      "flow": []
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Apply Offer",
+    "method": "PUT",
+    "url": "https://api.breeze.in/test/offer/{{nb_cartId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "offerCode": "test10",
+      "action": "APPLY",
+      "sponsoredBy": "SHOP",
+      "merchantParams": null,
+      "autoApply": false,
+      "feOffersApplied": null
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Add GST Information",
+    "method": "PATCH",
+    "url": "https://api.breeze.in/test/address/gst",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "id": "{{nb_gstDetailsId}}",
+      "gstIn": "09CWPPR2625J1ZG",
+      "companyName": "Test Company",
+      "isDefault": true,
+      "billingAddressId": "{{nb_selectedAddressId}}",
+      "isVerified": false
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "customerId": "{{nb_customerId}}"
+    }
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Update User Address",
+    "method": "PUT",
+    "url": "https://api.breeze.in/test/user/address",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "id": "{{nb_selectedAddressId}}",
+      "postalCode": "203412",
+      "country": "India",
+      "state": "Uttar Pradesh",
+      "district": "",
+      "city": "BULANDSHAHR",
+      "type": "",
+      "line1": "hgfds",
+      "line2": null,
+      "name": "{{nb_customerName}}",
+      "nickname": "",
+      "latitude": null,
+      "longitude": null,
+      "phoneNumber": "{{phoneNumber}}",
+      "landmark": "",
+      "countryPhoneCode": "+91",
+      "isDefault": false,
+      "validate": true,
+      "addressValidationId": "DdLdaoyACKEysvJuARUm9",
+      "orderingForSomeoneElse": null,
+      "emailAddress": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "status": "success"
+    }
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Payment Attempt",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/payments/attempt",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "checkoutId": "{{nb_cartId}}",
+      "orderId": "{{nb_orderId}}",
+      "paymentCardIssuer": null,
+      "paymentCardType": null,
+      "paymentMethod": "NB_DUMMY",
+      "paymentMethodType": "NB",
+      "txnReference": "JMTuvYVevTqBBT2Z1aTVa",
+      "createMatrixOrder": null,
+      "deviceId": "zlZIHovzVzCVnDNe1Cb-9",
+      "atomsState": {
+        "checkoutId": null,
+        "sessionId": "aenx2TJnA8LpxA9R8kj96",
+        "enforcedPostalCode": null,
+        "checkoutInitiationPageHref": "https://utkarsh-prod-store.myshopify.com",
+        "sessionTokenStored": null,
+        "shopUrl": "https://utkarsh-prod-store.myshopify.com",
+        "shopType": "shopify",
+        "platformCustomer": {
+          "id": null,
+          "email": null
+        },
+        "ghostMode": false,
+        "testingMode": false,
+        "jour": null,
+        "emailOptional": null
+      },
+      "applyPartialPayment": false,
+      "merchantParams": null,
+      "feOffersApplied": null,
+      "selectedDeliveryItemsGrouping": null,
+      "journey": null
+    },
+    "expectedStatus": 200,
+    "expectedResponse": {
+      "approve": true
+    },
+    "extract": [
+      {
+        "field": "nb_txnReference",
+        "path": "resumePaymentPayload.payload.txnReference"
+      },
+      {
+        "field": "nb_paymentOrderId",
+        "path": "resumePaymentPayload.payload.orderDetails",
+        "parseJson": true,
+        "jsonPath": "order_id"
+      },
+      {
+        "field": "nb_signature",
+        "path": "resumePaymentPayload.payload.signature"
+      },
+      {
+        "field": "nb_orderDetails",
+        "path": "resumePaymentPayload.payload.orderDetails"
+      }
+    ]
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Place Txn on Juspay",
+    "method": "POST",
+    "url": "https://api.juspay.in/txns",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "content-type": "application/x-www-form-urlencoded",
+      "origin": "https://sdk.breeze.in",
+      "pragma": "no-cache",
+      "sdk-app-name": "unknown_appname",
+      "sdk-client-id": "breeze",
+      "sdk-godel-build-version": "unknown_build",
+      "sdk-godel-version": "unknown_trackname",
+      "sdk-os": "WEB:unknown",
+      "sdk-user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "sdk-version-dotp": "2.0rc1_66",
+      "sdk-version-ec": "1.0.1",
+      "sdk-version-flyer": "1.0.0",
+      "sdk-version-hyperos": "2.0rc1_43",
+      "sdk-version-hyperos-config": "0.0.1",
+      "sdk-version-hyperos-tracker": "2.0.13",
+      "sdk-version-upiintent": "2.0rc1_57",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-jp-merchant-id": "utkarshprodstore",
+      "x-merchantid": "utkarshprodstore",
+      "x-session-id": "{{nb_cartId}}"
+    },
+    "body": {
+      "signature": "{{nb_signature}}",
+      "redirect_after_payment": "false",
+      "payment_method_type": "NB",
+      "payment_method": "NB_DUMMY",
+      "payment_channel": "WEB",
+      "order_id": "{{nb_paymentOrderId}}",
+      "order_details": "{{nb_orderDetails}}",
+      "offers": "[]",
+      "metadata": {
+        "payment_channel": "WEB",
+        "microapp": "ec"
+      },
+      "additional_payment_details": "[]",
+      "merchant_key_id": "943630",
+      "merchant_id": "utkarshprodstore",
+      "format": "json",
+      "add_merchant_return_url": "true"
+    },
+    "expectedStatus": 200,
+    "extract": [
+      {
+        "field": "nb_merchantTxnId",
+        "path": "txn_uuid"
+      }
+    ]
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Dummy PG - Submit CHARGED",
+    "method": "POST",
+    "url": "https://api.juspay.in/v2/pay/response/utkarshprodstore/{{nb_merchantTxnId}}",
+    "headers": {
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "content-type": "application/x-www-form-urlencoded",
+      "origin": "https://api.juspay.in",
+      "pragma": "no-cache",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+    },
+    "body": {
+      "txnState": "CHARGED",
+      "merchantTransactionId": "{{nb_merchantTxnId}}",
+      "isNetbanking": "true",
+      "resCode": "000",
+      "resMessage": "Charged",
+      "mandateToken": "",
+      "authCode": "",
+      "transactionReferenceId": "EPG_TESTAUTOMATION01",
+      "isWallet": "",
+      "txnType": "",
+      "debitAmount": "",
+      "rrn": "208004",
+      "serviceName": "NB"
+    },
+    "expectedStatus": 200
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Get Order Details",
+    "method": "GET",
+    "url": "https://api.breeze.in/test/order/{{nb_orderId}}",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}"
+    },
+    "expectedStatus": 200,
+    "delayBefore": 3000,
+    "expectedResponse": {
+      "status": "SUCCESS",
+      "id": "{{nb_orderId}}",
+      "cartId": "{{nb_cartId}}",
+      "paymentInstrument": "NB_DUMMY"
+    },
+    "extract": [
+      {
+        "field": "nb_platformOrderId",
+        "path": "platformOrderId"
+      },
+      {
+        "field": "nb_txnId",
+        "path": "txnId"
+      }
+    ]
+  },
+  {
+    "name": "[Prepaid NB_DUMMY] Track Purchase Analytics",
+    "method": "POST",
+    "url": "https://api.breeze.in/test/analytics/trackers/{{nb_cartId}}?event_name=Purchase",
+    "headers": {
+      "accept": "*/*",
+      "accept-language": "en-US,en;q=0.9",
+      "cache-control": "no-cache",
+      "origin": "https://app.breeze.in",
+      "pragma": "no-cache",
+      "referer": "https://app.breeze.in/",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+      "x-app-id": "",
+      "x-shop-url": "https://utkarsh-prod-store.myshopify.com",
+      "authorization": "Bearer {{nb_sessionToken}}",
+      "x-checkout-id": "{{nb_cartId}}",
+      "content-type": "application/json"
+    },
+    "body": {
+      "event": "Purchase",
+      "currentLocation": "{{nb_checkoutUrl}}",
+      "shippingCharge": 0,
+      "ga": true,
+      "items": [
+        {
+          "variant": 45949388292285,
+          "discount": 0,
+          "name": "tshirt",
+          "id": 8148300759229,
+          "price": 10,
+          "vendor": "utkarsh-prod-store",
+          "quantity": 1,
+          "productType": "",
+          "currency": "INR"
+        }
+      ],
+      "hashedEmailAddress": "40f615d1e6c1d6e55e1f8025e518e6d8af85b649669f5904227d4c45e4cd1c68",
+      "fbPixel": true,
+      "shopOrderId": "#1044",
+      "paymentMethodType": "NB",
+      "total_price": 1180,
+      "hashedPhoneNumber": "5021ca312e39c157c912428eb1d7b9f791269fc4326c90994eaef284b75401cc",
+      "currency": "INR",
+      "tax": 180,
+      "platformIdentifierId": "{{nb_platformOrderId}}",
       "item_count": 1
     },
     "expectedStatus": 200
