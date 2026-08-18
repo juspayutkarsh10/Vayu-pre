@@ -42,7 +42,7 @@ export interface TestStep {
   requiresInput?: RequiresInput[];
   validation?: ValidationConfig;
   retryOnOtpError?: boolean;
-  noFollowRedirects?: boolean; // when true, axios will NOT follow 3xx — use to capture JSON before redirect
+  retryUntilSuccess?: { intervalMs: number; timeoutMs: number }; // retry the request on network/HTTP error until timeoutMs elapses
   delayBefore?: number; // milliseconds to wait before executing this step
 }
 
