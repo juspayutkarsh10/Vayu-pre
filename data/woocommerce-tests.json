@@ -2571,7 +2571,8 @@
       "sec-fetch-site": "same-site"
     },
     "delayBefore": 3000,
-    "expectedStatus": 200
+    "expectedStatus": 200,
+    "retryUntilSuccess": { "intervalMs": 1000, "timeoutMs": 5000 }
   },
   {
     "name": "[Prepaid NB_DUMMY] Get Order Details",

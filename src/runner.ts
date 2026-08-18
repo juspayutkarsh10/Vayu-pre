@@ -1,8 +1,8 @@
-import axios, { AxiosResponse } from "axios";
 import * as fs from "fs";
 import * as path from "path";
 import * as qs from "querystring";
 import { exec } from "child_process";
+import { request, HttpResponse } from "./utils/http";
 import { matchResponse } from "./utils/validator";
 import { promptMultipleInputs } from "./utils/input";
 import { TestContext } from "./utils/store";
@@ -61,6 +61,42 @@ function prepareFormData(body: Record<string, unknown>): string {
         : String(value);
   }
   return qs.stringify(formData);
+}
+
+async function requestWithRetry(
+  requestFn: () => Promise<HttpResponse>,
+  config: { intervalMs: number; timeoutMs: number },
+  expectedStatus?: number
+): Promise<HttpResponse> {
+  const start = Date.now();
+  while (true) {
+    try {
+      const response = await requestFn();
+      if (expectedStatus !== undefined && response.status !== expectedStatus) {
+        if (Date.now() - start >= config.timeoutMs) {
+          return response;
+        }
+        console.log(
+          `   ⏳ Retrying in ${config.intervalMs}ms (got ${response.status}, expected ${expectedStatus}; ${
+            Date.now() - start
+          }ms elapsed of ${config.timeoutMs}ms budget)...`
+        );
+        await new Promise((resolve) => setTimeout(resolve, config.intervalMs));
+        continue;
+      }
+      return response;
+    } catch (err) {
+      if (Date.now() - start >= config.timeoutMs) {
+        throw err;
+      }
+      console.log(
+        `   ⏳ Retrying in ${config.intervalMs}ms (${Date.now() - start}ms elapsed of ${
+          config.timeoutMs
+        }ms budget)...`
+      );
+      await new Promise((resolve) => setTimeout(resolve, config.intervalMs));
+    }
+  }
 }
 
 function isIncorrectOtpError(responseData: unknown): boolean {
@@ -225,26 +261,32 @@ async function runPortalTests(
       result.requestHeaders = headers;
       result.requestBody = Object.keys(body).length > 0 ? body : null;
 
-      let requestData: string | Record<string, unknown> =
-        isFormEncoded && Object.keys(body).length > 0
+      let requestData: string | Record<string, unknown> | undefined =
+        Object.keys(body).length === 0
+          ? undefined
+          : isFormEncoded
           ? prepareFormData(body)
           : body;
 
       const isOtpVerifyTest =
         test.name.toLowerCase().includes("verify otp") ||
         !!test.retryOnOtpError;
-      let response: AxiosResponse;
+      let response: HttpResponse;
       let otpRetryCount = 0;
       const maxOtpRetries = 2;
 
       while (true) {
-        response = await axios({
-          method: test.method,
-          url,
-          headers,
-          data: requestData,
-          ...(test.noFollowRedirects ? { maxRedirects: 0, validateStatus: (s) => s < 400 } : {}),
-        });
+        const doRequest = () =>
+          request({
+            method: test.method,
+            url,
+            headers,
+            data: requestData,
+          });
+
+        response = test.retryUntilSuccess
+          ? await requestWithRetry(doRequest, test.retryUntilSuccess, test.expectedStatus)
+          : await doRequest();
 
         if (
           isOtpVerifyTest &&
@@ -269,7 +311,9 @@ async function runPortalTests(
             ? testContext.replaceInObjectDirect(test.body || {})
             : (testContext.replaceInObject(test.body || {}) as Record<string, unknown>);
           requestData =
-            isFormEncoded && Object.keys(body).length > 0
+            Object.keys(body).length === 0
+              ? undefined
+              : isFormEncoded
               ? prepareFormData(body)
               : body;
           result.requestBody = Object.keys(body).length > 0 ? body : null;
@@ -334,19 +378,19 @@ async function runPortalTests(
       pass++;
     } catch (err) {
       result.status = "fail";
-      const axiosErr = err as { response?: AxiosResponse; message: string };
+      const httpErr = err as { response?: { data: unknown; status: number }; message: string };
 
-      const errorResponse = axiosErr.response?.data ?? result.response;
-      const errorStatusCode = axiosErr.response?.status ?? result.statusCode;
+      const errorResponse = httpErr.response?.data ?? result.response;
+      const errorStatusCode = httpErr.response?.status ?? result.statusCode;
 
-      result.error = axiosErr.response?.data
-        ? JSON.stringify(axiosErr.response.data, null, 2)
-        : axiosErr.message;
+      result.error = httpErr.response?.data
+        ? JSON.stringify(httpErr.response.data, null, 2)
+        : httpErr.message;
       result.statusCode = errorStatusCode;
       result.response = errorResponse;
 
       console.log(`❌ FAIL: ${test.name}`);
-      console.log(`   ${axiosErr.message}`);
+      console.log(`   ${httpErr.message}`);
       fail++;
     }
 
